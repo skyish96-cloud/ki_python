@@ -10,11 +10,19 @@ class Car:
 
 class MyCar(Car):
 
-    def run(self): # 부모와 같은 메서드를 사용하면 override로 인식된다.
-        print('차가 시속 200km로 달린다.')
+    turbo = False
 
+    def run(self): # 부모와 같은 메서드를 사용하면 override로 인식된다.
+        if self.turbo == True:
+            print('차가 시속 200km로 달린다.')
+        else:
+            super().run() #부모의 rum을 그대로 쓰겠다.
 
 mc = MyCar()
 mc.start()
+
 mc.run()
+mcturbo = True
+mc.run()
+
 mc.stop()
