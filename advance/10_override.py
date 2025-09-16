@@ -26,3 +26,7 @@ mcturbo = True
 mc.run()
 
 mc.stop()
+
+# 상석을 받으면 부모 class의 member를 내것처럼 쓸 수 있다.
+# python에서는 여러 클래스를 한번에 상속 받을 수 있다.
+# 상속받은 함수가 마음에 들지 않으면 바꿔 쓸 수 있다.(override)
