@@ -29,3 +29,6 @@ class Teacher(SchoolMember): # 자식
 t = Teacher('김철수',33,50000000)
 # 5. name 과 age 는 부모것 이지만 내것처럼 내 객체에서 가져다 쓸 수 있게 된다.
 print(f'{t.name}({t.age}) - {t.salary}')
+
+
+#ㅋㅋ
