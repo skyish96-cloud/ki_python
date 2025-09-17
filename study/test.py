@@ -1,35 +1,132 @@
-# 코드리뷰를 해야함...
-b = [3,4,1,2,3,4,5,6,1,3,2] # 모든 3을 찾아보세요.
-
-idx = 0
+score = {}
 while True:
-    idx = b.index(3,idx)
-    print(f'3의 값은 {idx}번에 있다.')
-    idx += 1
+    print('성적 관리 프로그램')
+    print('1. 성적 등록')
+    print('2. 성적 수정')
+    print('3. 성적 삭제')
+    print('4. 성적 검색')
+    print('5. 전체 보기')
+    print('0.종료')
+    menu = input('메뉴 선택 : ')
+
+    if menu == '1':
+        print('성적 등록')
+        name = input('이름 입력 :')
+        if score.get(name) != None:
+            print(f'f{name} 님은 이미 등록 되었습니다.')
+            continue
+        while True:
+            kor = input('국어 점수 입력 : ')
+            if kor.isdigit():
+                kor = int(kor)
+                if kor < 0 or kor > 100:
+                    print('0~100사이 값만 입력하세요.')
+                else:
+                    break
+            else:
+                print('0~100사이 값만 입력하세요.')
+        while True:
+            eng = input('영어 점수 입력 : ')
+            if eng.isdigit():
+                eng = int(eng)
+                if eng < 0 or eng > 100:
+                    print('0~100사이 값만 입력하세요.')
+                else:
+                    break
+            else:
+                print('0~100사이 값만 입력하세요.')
+        while True:
+            math = input('수학 점수 입력 : ')
+            if math.isdigit():
+                math = int(math)
+                if math < 0 or math > 100:
+                    print('0~100사이 값만 입력하세요.')
+                else:
+                    break
+            else:
+                print('0~100사이 값만 입력하세요.')
+        score[name] = [kor, eng, math]
+        print(f'{name}님의 정보를 등록했습니다.')
 
 
-# * 코드리뷰에서 제일 좋은 것은 코드 b에서 3이라는 숫자를 찾는다 라고 말해주는 것
+    elif menu == '2':
+        print('성적 수정')
+        name = input('수정할 이름 입력 :')
+        if score.get(name) != None:
+            while True:
+                kor = input('국어 점수 입력 : ')
+                if kor.isdigit():
+                    kor = int(kor)
+                    if kor < 0 or kor > 100:
+                        print('0~100사이 값만 입력하세요.')
+                    else:
+                        break
+                else:
+                    print('0~100사이 값만 입력하세요.')
+            while True:
+                eng = input('영어 점수 입력 : ')
+                if eng.isdigit():
+                    eng = int(eng)
+                    if eng < 0 or eng > 100:
+                        print('0~100사이 값만 입력하세요.')
+                    else:
+                        break
+                else:
+                    print('0~100사이 값만 입력하세요.')
+            while True:
+                math = input('수학 점수 입력 : ')
+                if math.isdigit():
+                    math = int(math)
+                    if math < 0 or math > 100:
+                        print('0~100사이 값만 입력하세요.')
+                    else:
+                        break
+                else:
+                    print('0~100사이 값만 입력하세요.')
+            score[name] = [kor, eng, math]
+            print(f'{name}님의 정보를 수정 등록했습니다.')
+    elif menu == '3':
+        print('성적 삭제')
+        name = input('삭제 이름:')
 
-#idx = 0
-# idx의 값을 0으로 설정하고 코드 b에서 0번부터 시작한다.
+        if score.get(name) != None:
+            print(f'{name}님의 정보를 삭제했습니다.')
+            score.pop(name)
+        else:
+            print(f'{name}님의 정보가 없습니다.')
 
-# while True:
-# 조건이 무조건 참이 될 경우 무한하게 반복한다.
+    elif menu == '4':
+        print('성적 검색')
+        name = input('검색할 이름 입력 :')
+        sum = 0
+        if score.get(name) != None:
+            info = score[name]
+            for i in info:
+                sum += i
+            print(f'\t{name}')
+            print(f'총점 : {sum}점')
+            print(f'평균 : {sum / 3:.2f}점')
 
-# idx = b.index(3,idx)
-# idx의 값부터 리스트 b에서 벨류 값이 3이 들어간 모든 수를 찾으라는 의미
+        else:
+            print(f'{name}님의 정보가 없습니다.')
 
-# print(f'3의 값은 {idx}번에 있다.')
-# f를 붙이면 문자열 안에 변수의 값을 직접 설정 할 수 있는 기능이다.
-# f-string을 사용하면 문자열과 다른 타입의 데이터를 함께 출력할 수 있다.
-# {} 안에 변수값을 설정하면 실행시 변수값이 지정된다.
-# 3의 값은 @번에 있다. 라는 멘트를 출력시킨다.
+    elif menu == '5':
+        print('전체 보기')
+        if len(score) == 0:
+            print('출력할 데이터가 없습니다.')
+        else:
+            for name, info in score.items():
+                print(f'\t{name}')
+                sum = 0
+                for i in info:
+                    sum += i
+                print(f'총점 : {sum}점')
+                print(f'평균 : {sum / 3:.2f}점')
 
-# idx += 1
-# 이유는 idx += 1 이것을 쓰지 않으면 while문의 무한루프에 빠지는 오류를 방지하기 위해서
-# idx += 1를 기입해서 이미 찾은 3을 다시 찾지 않고 그 뒤에 숫자들을 확인하면서 정상적으로 실행하도록한다.
-# 3을 모두 찾으면 반복이 종료된다.
-
-# 다 찾았지만 종료가 되지 않는 이유는 ?
-# 다른 문장을 추가하지 않아서이다.
-
+    elif menu == '0':
+        print('종료')
+        print('프로그램을 종료합니다.')
+        break
+    else:
+        print('선택된 메뉴가 없습니다.')
+    print()
